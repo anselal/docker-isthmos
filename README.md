@@ -1,7 +1,22 @@
 # docker-isthmos
 Docker UI
 
-I wanted to create an easy to use docker UI with a small footprint so I used Flask and docker-py for the backend and w2ui for the frontend.
+I wanted to create an easy to use docker UI with a small footprint so I used
+Flask and docker-py for the backend and w2ui for the frontend.
+
+## Install
+
+To install the dependencies use pip:
+```
+$ pip install -r requirements.txt
+```
+
+## Run
+
+Start the application with the following command:
+```
+$ python run.py
+```
 
 #### At this moment the UI supports:
 * Browsing local images
