@@ -1,0 +1,81 @@
+{%- extends "base.html" %}
+{%- block title %}Docker-isthmos | Minimal Docker UI{%- endblock %}
+{%- block content %}
+    <br>
+    <ol class="breadcrumb">
+        <li class="active" id="logo"><a href="{{ url_for('docker_isthmos') }}">docker-isthmos</a></li>
+    </ol>
+
+    <div id="toolbar_menu" style="width: 100%"></div>
+    <br>
+    <div id="layout" style="width: 100%; height: 300px;"></div>
+    <br>
+    <div id="image_history" style="width: 100%; height: 300px;"></div>
+    <br>
+    <div id="container_logs" style="width: 100%; height: 120px;"></div>
+    <br>
+    <div id="container_processes" style="width: 100%; height: 300px;"></div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/helper.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/layout.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/sidebar.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/images.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/master_details.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/images_history.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/images_search.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/containers.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/container_processes.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/container_logs.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/volumes.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/version_info.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/views/toolbar_menu.js') }}"></script>
+    <script type="text/javascript">
+
+        // helper functions
+
+
+        $(function () {
+            // initialization
+	    $('#toolbar_menu').w2toolbar(toolbar_menu);
+            $('#layout').w2layout(layout);
+            w2ui.layout.content('left', $().w2sidebar(sidebar));
+            w2ui.layout.content('main', $().w2grid(images));
+            w2ui.layout.content('right', $().w2grid(master_details));
+            // in memory initialization
+            $().w2grid(containers);
+            $().w2grid(volumes);
+            $().w2grid(images_search);
+            $().w2grid(version_info);
+            $('#image_history').w2grid(image_history);
+            $('#container_processes').w2grid(container_processes);
+            $('#container_processes').hide();
+            $('#container_logs').w2grid(container_logs);
+            $('#container_logs').hide();
+            $('#images_search').hide();
+            w2utils.settings.dataType = 'RESTFULL';
+
+
+	    // Init ToolbarMenu Events
+            initToolbarMenuEvents();
+
+	    // Init Sidebar Events
+            w2ui['sidebar'].on('click', function (event) {
+                onClickSidebar(event);
+            });//SIDEBAR: onClick
+
+	    // Init Images Grid Events
+            initImagesGridEvents();
+
+	    // Init ImagesSearch Grid Events
+            initImagesSearchGridEvents();
+
+	    // Init Containers Grid Events
+            initContainersGridEvents();
+
+	    // Init Volumes Grid Events
+            initVolumesGridEvents();
+
+        });
+
+    </script>
+{%- endblock %}
