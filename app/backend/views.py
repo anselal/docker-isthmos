@@ -1,14 +1,22 @@
+import os
 import json
+import docker
 
 from app.backend import app
-from docker import Client
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 
 # -------------------------------------------------------------------------------
 # Docker-isthmos
 
-client = Client(base_url='unix://var/run/docker.sock')
-# client = Client(base_url='tcp://127.0.0.1:2375')
+# Enable functionality on OS X and Linux hosts
+client = docker.from_env(assert_hostname=False) \
+    if os.getenv('DOCKER_HOST') \
+    else docker.Client(base_url='unix://var/run/docker.sock')
+
+
+@app.route('/')
+def hello():
+    return redirect(url_for('docker_isthmos'))
 
 
 @app.route('/docker/isthmos')
@@ -203,5 +211,3 @@ def docker_version_info():
     version_info['Version'] = version
     version_info['Info'] = info
     return jsonify(status="success", records=version_info)
-
-
