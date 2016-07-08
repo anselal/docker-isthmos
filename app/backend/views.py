@@ -3,7 +3,7 @@ import json
 import docker
 
 from app.backend import app
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 
 # -------------------------------------------------------------------------------
 # Docker-isthmos
@@ -12,6 +12,11 @@ from flask import render_template, jsonify, request
 client = docker.from_env(assert_hostname=False) \
     if os.getenv('DOCKER_HOST') \
     else docker.Client(base_url='unix://var/run/docker.sock')
+
+
+@app.route('/')
+def hello():
+    return redirect(url_for('docker_isthmos'))
 
 
 @app.route('/docker/isthmos')
