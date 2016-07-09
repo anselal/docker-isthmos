@@ -1,6 +1,6 @@
-import os
-import json
 import docker
+import json
+import os
 
 from app.backend import app
 from flask import render_template, jsonify, request, redirect, url_for
