@@ -10,14 +10,14 @@
         <title>{%- block title %}{{ title }}{%- endblock %}</title>
         {%- block css %}
             <!-- Bootstrap core CSS -->
-            <link href="{{ url_for('static', filename='css/bootstrap-3.3.5.min.css') }}" rel="stylesheet">
+            <link href="{{ url_for('static', filename='css/lib/bootstrap-3.3.5.min.css') }}" rel="stylesheet">
     	    <!-- Font Awesome 
             <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">-->
-	    <link href="{{ url_for('static', filename='css/fontello.css') }}" rel="stylesheet" type="text/css"/>
+	    <link href="{{ url_for('static', filename='css/lib/fontello.css') }}" rel="stylesheet" type="text/css"/>
             <!-- Custom styles for this template -->
             <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
             <!-- W2UI -->
-            <link href="{{ url_for('static', filename='css/w2ui-1.4.3.min.css') }}" rel="stylesheet" type="text/css"/>
+            <link href="{{ url_for('static', filename='css/lib/w2ui-1.4.3.min.css') }}" rel="stylesheet" type="text/css"/>
             {{- css }}
         {%- endblock %}
         {%- block style %}
