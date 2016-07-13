@@ -83,7 +83,7 @@ function onClickImages(event) {
 
     // Load Image History
     w2ui['image_history'].clear();
-    w2ui['image_history'].load('http://127.0.0.1:5000/docker/images/history/' + record.Id);
+    w2ui['image_history'].load('http://127.0.0.1:5000/docker/images/' + record.Id + '/history');
 
     // Enable toolbar buttons
     w2ui['images'].toolbar.enable('action');

@@ -75,7 +75,7 @@ function onClickImageSearch(event) {
 function onSearchImageSearch(event) {
 // Load Search Image Results
     w2ui['images_search'].clear();
-    w2ui['images_search'].load('http://127.0.0.1:5000/docker/images/search/' + event.searchValue);
+    w2ui['images_search'].load('http://127.0.0.1:5000/docker/images/' + event.searchValue + '/search');
 
     w2ui['images_search'].toolbar.disable('pull');
 }//IMAGES_SEARCH: onSearch()
@@ -84,7 +84,7 @@ function onReloadImageSearch(event) {
     w2ui['images_search'].toolbar.disable('pull');
     var search_value = w2ui['images_search'].searchData[0].value;
     w2ui['images_search'].clear();
-    w2ui['images_search'].load('http://127.0.0.1:5000/docker/images/search/' + search_value);
+    w2ui['images_search'].load('http://127.0.0.1:5000/docker/images/' + search_value + '/search');
 }//IMAGES_SEARCH: onReload()
 
 
