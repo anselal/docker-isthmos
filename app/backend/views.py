@@ -89,6 +89,15 @@ def docker_images_pull(imageName):
     return jsonify(status="success", total=len(imageName), records=imageName)
 
 
+@app.route('/docker/images/<imageId>/remove')
+def docker_images_remove(imageId):
+    try:
+        client.remove_image(image=imageId, force=True)
+    except:
+        return jsonify(status="failure", message="error removing image {}".format(imageId))
+    return jsonify(status="success", message="image {} successfully removed".format(imageId))
+
+
 @app.route('/docker/containers')
 def docker_containers():
     containers = client.containers()
