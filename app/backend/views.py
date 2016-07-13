@@ -15,11 +15,6 @@ client = docker.from_env(assert_hostname=False) \
 
 
 @app.route('/')
-def hello():
-    return redirect(url_for('docker_isthmos'))
-
-
-@app.route('/docker/isthmos')
 def docker_isthmos():
     return render_template('index.html')
 
@@ -52,14 +47,14 @@ def docker_images():
     # return render_template('docker/index.html', images=images)
 
 
-@app.route('/docker/images/history/<imageId>')
-def docker_image_histoty(imageId):
+@app.route('/docker/images/<imageId>/history')
+def docker_images_history(imageId):
     imageHistory = client.history(imageId)
     return jsonify(status="success", total=len(imageHistory), records=imageHistory)
 
 
-@app.route('/docker/images/search/<search_str>')
-def docker_search(search_str):
+@app.route('/docker/images/<search_str>/search')
+def docker_images_search(search_str):
     search_results = client.search(search_str)
     recid_counter = 1
     results = []
@@ -87,8 +82,8 @@ def docker_search(search_str):
     return jsonify(status="success", total=len(results), records=results)
 
 
-@app.route('/docker/images/pull/<imageName>')
-def docker_image_pull(imageName):
+@app.route('/docker/images/<imageName>/pull')
+def docker_images_pull(imageName):
     for line in client.pull(imageName, stream=True):
         print(json.dumps(json.loads(line), indent=4))
     return jsonify(status="success", total=len(imageName), records=imageName)
@@ -121,8 +116,8 @@ def docker_containers():
     return jsonify(status="success", total=len(containers), records=containers)
 
 
-@app.route('/docker/container/top/<containerId>')
-def docker_container_top(containerId):
+@app.route('/docker/containers/<containerId>/top')
+def docker_containers_top(containerId):
     containerProcesses = client.top(containerId)
     procs = []
     recid_counter = 1
@@ -149,7 +144,7 @@ def docker_container_top(containerId):
     return jsonify(status="success", total=len(containerProcesses), records=containerProcesses)
 
 
-@app.route('/docker/container/logs/<containerId>')
+@app.route('/docker/containers/<containerId>/logs')
 def docker_container_logs(containerId):
     containerLogs = client.logs(containerId, timestamps=True, tail=20)
     containerLogs_splitlines = containerLogs.splitlines()
@@ -162,14 +157,14 @@ def docker_container_logs(containerId):
     return jsonify(status="success", total=len(logs), records=logs)
 
 
-@app.route('/docker/container/stop/<containerId>')
-def docker_container_stop(containerId):
+@app.route('/docker/containers/<containerId>/stop')
+def docker_containers_stop(containerId):
     client.stop(containerId)
     return jsonify(status="success")
 
 
-@app.route('/docker/container/remove/<containerId>')
-def docker_container_remove(containerId):
+@app.route('/docker/containers/<containerId>/remove')
+def docker_containers_remove(containerId):
     client.remove_container(container=containerId, force=True)
     return jsonify(status="success")
 
