@@ -128,6 +128,8 @@ function onClickContainersToolbar(event) {
                                         body: success_message,
                                     });
                                     w2ui['containers'].reset();
+                                    w2ui['container_logs'].clear();
+                                    w2ui['container_processes'].clear();
                                 })
                                 .fail(function () {
                                     alert("error");
