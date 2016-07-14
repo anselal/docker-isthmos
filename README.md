@@ -19,7 +19,7 @@ $ python run.py
 ```
 
 #### At this moment the UI supports:
-* Browsing local images
+* Browsing, removing local images
 * Viewing, stopping, deleting running containers
 * Viewing local volumes
 * Searching hub.docker.com for images

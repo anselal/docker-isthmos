@@ -29,7 +29,8 @@ var images = {
         items: [
             {
                 type: 'menu', id: 'action', caption: 'Action', disabled: true,
-                items: [{text: 'Run', id: 'run'}]
+                items: [{text: 'Remove', id: 'remove'},
+                        {text: 'Run', id: 'run'}]
             },
             {type: 'break'}
         ]
@@ -58,12 +59,48 @@ function onClickImagesToolbar(event) {
     var selectionId = w2ui['images'].getSelection();
     var record = w2ui['images'].get(selectionId[0]);
     switch (event.target) {
+        case 'action:remove':
+            if (record == null) {
+                w2popup.open({title: 'Message', body: 'No record selected'});
+            }
+            else {
+                //w2popup.open({title: 'Popup Title HTML', body: record.Id, buttons: 'Buttons HTML'});
+                msg = "Are you sure you want to remove image with ID <b>" + record.Id + "</b> and Tag(s) <b>" + record.RepoTags + "</b>?"
+                w2confirm(msg, "Remove Image", function btn(answer) {
+                    // Yes or No -- case-sensitive
+                    switch (answer) {
+                        case 'Yes':
+                            $.get("http://127.0.0.1:5000/docker/images/" + record.Id + '/remove', function () {})
+                                .done(function (data) {
+                                    if (data['status']==='failure') {
+                                        alert("error");
+                                    }
+                                    else if (data['status']==='success') {
+                                        success_message = "<h2>Image removed</h2><br><br>Image ID: " + record.Id + "<br>Tag(s): " + record.RepoTags
+                                        w2popup.open({
+                                        title: 'Success',
+                                        body: success_message,
+                                        });
+                                    }
+                                    w2ui['images'].reset();
+                                    w2ui['image_history'].clear();
+                                })
+                                .fail(function () {
+                                    alert("error");
+                                });
+                            break;
+                        case 'No':
+                            break;
+                    }
+                });
+            }
+            break;
         case 'action:run':
             if (record == null) {
                 w2popup.open({title: 'Message', body: 'No record selected'});
             }
             else {
-                var imageName = record.RepoTags;
+                var imageId = record.Id;
                 w2popup.open({title: 'Popup Title HTML', body: "TO-DO"});
             }
             break;
