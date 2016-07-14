@@ -49,7 +49,7 @@ function onClickSidebar(event) {
             break;
         case 'search':
             w2ui['layout'].hide('right', window.instant);
-            $('#images_history').hide();
+            $('#image_history').hide();
             $('#container_processes').hide();
             $('#container_logs').hide();
             w2ui.layout.content('main', w2ui.images_search);
