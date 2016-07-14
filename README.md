@@ -18,6 +18,17 @@ Start the application with the following command:
 $ python run.py
 ```
 
+## Dockerize (optionally)
+Build docker image with following command:
+```
+$ docker build -t anselal/docker-isthmos:v0.0.1 .
+```
+
+Run docker container with the following command:
+```
+$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/isthmos:v0.0.1
+```
+
 #### At this moment the UI supports:
 * Browsing, removing local images
 * Viewing, stopping, deleting running containers
