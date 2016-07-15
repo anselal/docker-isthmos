@@ -1,0 +1,3 @@
+app/frontend/static/css/lib/* linguist-vendored
+app/frontend/static/css/font/* linguist-vendored
+app/frontend/static/js/lib/* linguist-vendored
