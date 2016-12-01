@@ -28,7 +28,7 @@ $ docker build -t anselal/docker-isthmos:v0.0.1 .
 
 Run docker container with the following command:
 ```
-$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/isthmos:v0.0.1
+$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/docker-isthmos:v0.0.1
 ```
 
 
