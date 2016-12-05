@@ -4,7 +4,7 @@ Docker UI
 I wanted to create an easy to use docker UI with a small footprint so I used
 Flask and docker-py for the backend and w2ui for the frontend.
 
-![Alt text](/screenshots/docker-isthmos_ImagesGrid.png "Isthmos - Images Grid")
+![Alt text](/screenshots/ "Docker-Isthmos Screenshots")
 
 ## Install
 
