@@ -1,6 +1,12 @@
-FROM anselal/python:v1
+#
+# Our base image
+FROM alpine:latest
 
 MAINTAINER Anastasios Selalmazidis <t.selalmasidis@gmail.com>
+
+#
+# Install python-pip
+RUN apk add --update py2-pip
 
 #
 # Add files
@@ -12,7 +18,8 @@ ADD requirements.txt /isthmos/
 #
 # Install requirements
 #
-RUN pip install -r /isthmos/requirements.txt
+RUN pip install --no-cache-dir -U pip
+RUN pip install --no-cache-dir -r /isthmos/requirements.txt
 
 #
 # Run app
