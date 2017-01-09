@@ -23,7 +23,7 @@ $ python run.py
 ## Dockerize (optionally)
 Build docker image with following command:
 ```
-$ docker build -t anselal/docker-isthmos:v0.0.1 .
+$ docker build -t anselal/docker-isthmos:latest .
 ```
 
 Run docker container with the following command:
