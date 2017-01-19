@@ -8,8 +8,6 @@ Docker UI
 I wanted to create an easy to use docker UI with a small footprint so I used
 Flask and docker-py for the backend and w2ui for the frontend.
 
-![Alt text](/screenshots/ "Docker-Isthmos Screenshots")
-
 ## Install
 
 To install the dependencies use pip:
@@ -25,16 +23,21 @@ $ python run.py
 ```
 
 ## Dockerize (optionally)
-Build docker image with following command:
+
+In case you want to build the container on your own (optionally)
 ```
-$ docker build -t anselal/docker-isthmos:latest .
+$ docker build -t anselal/docker-isthmos:0.0.2 .
+```
+
+Otherwise download the container from hub.docker.com (optionally)
+```
+$ docker pull anselal/docker-isthmos:0.0.2
 ```
 
 Run docker container with the following command:
 ```
-$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/docker-isthmos:v0.0.1
+$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/docker-isthmos:0.0.2
 ```
-
 
 #### At this moment the UI supports:
 * Browsing, removing local images
