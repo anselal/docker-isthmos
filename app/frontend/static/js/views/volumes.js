@@ -17,7 +17,7 @@ var volumes = {
         {field: 'Labels', caption: 'Labels', sortable: true, size: '80px'}
     ],
     url: {
-        get: 'http://127.0.0.1:5000/docker/volumes'
+        get: '/docker/volumes'
     },
     sortData: [
         {field: 'Mountpoint', direction: 'asc'}

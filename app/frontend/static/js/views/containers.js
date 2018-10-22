@@ -21,7 +21,7 @@ var containers = {
         //{field: 'Status', caption: 'Status', sortable: true, size: '80px', attr: 'align="center"'}
     ],
     url: {
-        get: 'http://127.0.0.1:5000/docker/containers'
+        get: '/docker/containers'
     },
     sortData: [
         {field: 'Image', direction: 'asc'}
@@ -83,7 +83,7 @@ function onClickContainersToolbar(event) {
                     // Yes or No -- case-sensitive
                     switch (answer) {
                         case 'Yes':
-                            $.get("http://127.0.0.1:5000/docker/containers/" + record.Id + '/stop', function () {
+                            $.get("/docker/containers/" + record.Id + '/stop', function () {
                             })
                                 .done(function () {
                                     success_message = "<h2>Container stopped</h2><br><br>Image: " + record.Image + "<br>Names: " + record.Names + "<br>Id: " + record.Id;
@@ -119,7 +119,7 @@ function onClickContainersToolbar(event) {
                     // Yes or No -- case-sensitive
                     switch (answer) {
                         case 'Yes':
-                            $.get("http://127.0.0.1:5000/docker/containers/" + record.Id + '/remove', function () {
+                            $.get("/docker/containers/" + record.Id + '/remove', function () {
                             })
                                 .done(function () {
                                     success_message = "<h2>Container removed</h2><br><br>Image: " + record.Image + "<br>Names: " + record.Names + "<br>Id: " + record.Id
@@ -168,19 +168,19 @@ function onClickContainers(event) {
 
     // Load Container Processses
     w2ui['container_processes'].clear();
-    w2ui['container_processes'].load('http://127.0.0.1:5000/docker/containers/' + record.Id + '/top');
+    w2ui['container_processes'].load('/docker/containers/' + record.Id + '/top');
 
     // Load Container Logs
     w2ui['container_logs'].clear();
-    w2ui['container_logs'].load('http://127.0.0.1:5000/docker/containers/' + record.Id + '/logs');
+    w2ui['container_logs'].load('/docker/containers/' + record.Id + '/logs');
 
     // Get string or JSON data and add it to the bottom of the layout
     /*
-     $.get('http://127.0.0.1:5000/docker/containers/' + record.Id + '/logs', function (data, status) {
+     $.get('/docker/containers/' + record.Id + '/logs', function (data, status) {
      w2ui['layout'].content('bottom', "Data: " + data + "\nStatus: " + status);
      });
 
-     $.getJSON('http://127.0.0.1:5000/docker/containers/' + record.Id + '/', function (result) {
+     $.getJSON('/docker/containers/' + record.Id + '/', function (result) {
      $.each(result, function (i, field) {
      //$("div").append(field + " ");
      w2ui['layout'].content('bottom', field + " ");

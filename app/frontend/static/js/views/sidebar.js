@@ -62,7 +62,7 @@ function onClickSidebar(event) {
             $('#container_processes').hide();
             w2ui.layout.content('main', w2ui.version_info);
             w2ui['version_info'].clear();
-            $.get('http://127.0.0.1:5000/docker/version_info', function (data, status) {
+            $.get('/docker/version_info', function (data, status) {
                 //var records = jQuery.parseJSON(data);
                 w2ui['version_info'].add([
                     {recid: 0, name: 'API Version:', value: data.records.Version.ApiVersion},

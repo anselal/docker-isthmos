@@ -15,7 +15,7 @@ var images = {
         {field: 'Id', caption: 'Id', sortable: true, size: '230px'}
     ],
     url: {
-        get: 'http://127.0.0.1:5000/docker/images'
+        get: '/docker/images'
     },
     sortData: [
         {field: 'RepoTags', direction: 'asc'}
@@ -70,7 +70,7 @@ function onClickImagesToolbar(event) {
                     // Yes or No -- case-sensitive
                     switch (answer) {
                         case 'Yes':
-                            $.get("http://127.0.0.1:5000/docker/images/" + record.Id + '/remove', function () {})
+                            $.get("/docker/images/" + record.Id + '/remove', function () {})
                                 .done(function (data) {
                                     if (data['status']==='failure') {
                                         alert("error");
@@ -120,7 +120,7 @@ function onClickImages(event) {
 
     // Load Image History
     w2ui['image_history'].clear();
-    w2ui['image_history'].load('http://127.0.0.1:5000/docker/images/' + record.Id + '/history');
+    w2ui['image_history'].load('/docker/images/' + record.Id + '/history');
 
     // Enable toolbar buttons
     w2ui['images'].toolbar.enable('action');
