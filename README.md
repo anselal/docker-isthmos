@@ -26,17 +26,17 @@ $ python run.py
 
 In case you want to build the container on your own (optionally)
 ```
-$ docker build -t anselal/docker-isthmos:0.0.2 .
+$ docker build -t anselal/docker-isthmos:0.0.3 .
 ```
 
 Otherwise download the container from hub.docker.com (optionally)
 ```
-$ docker pull anselal/docker-isthmos:0.0.2
+$ docker pull anselal/docker-isthmos:0.0.3
 ```
 
 Run docker container with the following command:
 ```
-$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/docker-isthmos:0.0.2
+$ docker run -d -p 5000:5000 -v /var/run/docker.sock:/var/run/docker.sock anselal/docker-isthmos:0.0.3
 ```
 
 #### At this moment the UI supports:
